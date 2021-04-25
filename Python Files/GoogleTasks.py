@@ -43,12 +43,13 @@ def createTaskList(name):
         body={'title': name}
     ).execute()
     selectedTaskListID = TaskListAssignments["id"]
+    return selectedTaskListID
 
 """
 Create A Task using the Google Tasks API
 """
 
-def createTask(title, notes, due, status, deleted):
+def createTask(id, title, notes, due, status, deleted):
     taskBody = {
         'title': title,
         'notes': notes,
@@ -58,7 +59,7 @@ def createTask(title, notes, due, status, deleted):
     }
 
     taskListAssignments = service.tasks().insert( #Creates an insert request
-            tasklist=createTaskList.selectedTaskListID,
+            tasklist=id,
             body=taskBody
     ).execute()
 

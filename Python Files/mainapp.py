@@ -9,6 +9,7 @@ from kivy.config import Config
 import easygui
 import pytesseract
 from GoogleTasks import createService, displayTaskList, createTaskList, createTask
+from GoogleService import convert_to_RFC_datetime
 
 CREDENTIALS = 'credentials.json' #The credintals file goes here
 API_NAME = 'tasks' #The name of the Google API being used, in this case it's tasks
@@ -93,6 +94,7 @@ class MainApp(BoxLayout):
             monthNumber = 11
         elif month == "Dec":
             monthNumber = 12
+        return monthNumber
 
 
     def fileConversion(self, value):
@@ -110,6 +112,10 @@ class MainApp(BoxLayout):
         print(monthNumber)
         print(dayNumber)
 
+        dt = convert_to_RFC_datetime(2021, monthNumber, dayNumber, 0, 0)
+
+        taskListID = createTaskList("Operating Systems and Networking")
+        createTask(taskListID, nameString, "", dt, "needsAction", False)
 
 
     def __init__(self, **kwargs):
