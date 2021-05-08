@@ -102,6 +102,16 @@ class MainApp(BoxLayout):
             monthNumber = 12
         return monthNumber
 
+# Clean string: remove "Not Yet Graded" text along with 'cg' and 'sg' glitches
+# (sometimes the AI glitches out and picks up 'cg' and 'sg' text while extracting text from the image)
+    def removeNYG(self, inputString):
+        if "Not Yet Graded" in inputString:
+            inputString = inputString[16:len(inputString)]
+
+        if "sg " or "cg " or "wg " in inputString:
+            inputString = inputString[0:len(inputString)]
+        return inputString
+
 #
 # This code is used to pull a file from the GUI and convert that file to a string.
 #
