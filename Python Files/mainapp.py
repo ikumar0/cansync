@@ -40,7 +40,8 @@ class MainApp(BoxLayout):
 
         endIndexDate = tempString.index("at")
 
-        dateString = fileText[startIndexDate + 4: endIndexDate]
+        dateString = tempString[startIndexDate + 4: endIndexDate]
+
         return dateString
 
 #
